@@ -1,48 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>henrique@portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>arch@rice</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- BOOT / TERMINAL -->
+  <main id="boot" class="center">
+    <section class="terminal" aria-label="Terminal">
+      <div class="term-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="term-title">tty1 — arch@rice</span>
+      </div>
 
-    <div class="terminal">
-        <div class="header">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
+      <div id="termOut" class="term-out" role="log" aria-live="polite"></div>
+
+      <div class="term-in">
+        <span class="prompt"><span id="userHost">guest@arch</span>:<span class="path">~</span>$</span>
+        <input id="termInput" type="text" autocomplete="off" spellcheck="false" autofocus />
+      </div>
+
+      <div class="term-hint">
+        Try: <code>help</code> • <code>login</code> • <code>clear</code>
+      </div>
+    </section>
+  </main>
+
+  <!-- DESKTOP -->
+  <main id="desktop" class="desktop hidden" aria-label="Desktop environment">
+    <header class="topbar">
+      <div class="left">
+        <span class="arch-badge"></span>
+        <span id="wmTitle" class="wm-title">Hypr-ish</span>
+      </div>
+      <div class="right">
+        <span id="clock" class="clock">--:--</span>
+      </div>
+    </header>
+
+    <section class="wall">
+      <aside class="dock" aria-label="Dock">
+        <button class="dock-btn" id="btnOpenPaint" title="Open Paint">🎨</button>
+        <button class="dock-btn" id="btnOpenTerminal" title="Open Terminal">⌨️</button>
+        <button class="dock-btn danger" id="btnLogout" title="Logout">⏻</button>
+      </aside>
+
+      <!-- WINDOW: PAINT -->
+      <div id="paintWin" class="window">
+        <div class="win-bar">
+          <div class="win-title">ricepaint — canvas</div>
+          <div class="win-actions">
+            <button class="win-btn" id="btnClear" title="Clear">Clear</button>
+            <button class="win-btn" id="btnSave" title="Save PNG">Save</button>
+            <button class="win-btn" id="btnClosePaint" title="Close">✕</button>
+          </div>
         </div>
 
-        <div class="content">
-            <p><span class="prompt">henrique@arch</span>:<span class="path">~</span>$ whoami</p>
-            <p class="output">Henrique Mendes</p>
+        <div class="win-body">
+          <div class="tools">
+            <label class="tool">
+              Color
+              <input id="color" type="color" value="#a6e3a1" />
+            </label>
 
-            <p><span class="prompt">henrique@arch</span>:<span class="path">~</span>$ cat about.txt</p>
-            <p class="output">
-                IT Student • Java • C++ • Python • Linux
-            </p>
+            <label class="tool">
+              Brush
+              <input id="size" type="range" min="1" max="40" value="6" />
+              <span id="sizeVal" class="mono">6</span>
+            </label>
 
-            <p><span class="prompt">henrique@arch</span>:<span class="path">~</span>$ ls projects</p>
-            <p class="output">
-                - cpp_games<br>
-                - html_portfolio<br>
-                - python_ai
-            </p>
+            <label class="tool">
+              Mode
+              <select id="mode">
+                <option value="draw" selected>Draw</option>
+                <option value="erase">Erase</option>
+              </select>
+            </label>
 
-            <p><span class="prompt">henrique@arch</span>:<span class="path">~</span>$ contact</p>
-            <p class="output">
-                github.com/yourusername
-            </p>
+            <div class="tip mono">Hold mouse and draw ✨ (works on touch too)</div>
+          </div>
 
-            <p class="cursor-line">
-                <span class="prompt">henrique@arch</span>:<span class="path">~</span>$ 
-                <span class="cursor"></span>
-            </p>
+          <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- WINDOW: MINI TERMINAL -->
+      <div id="miniTermWin" class="window hidden small">
+        <div class="win-bar">
+          <div class="win-title">term — desktop</div>
+          <div class="win-actions">
+            <button class="win-btn" id="btnCloseMiniTerm" title="Close">✕</button>
+          </div>
+        </div>
+        <div class="win-body mini-term">
+          <div class="mini-out" id="miniOut"></div>
+          <div class="mini-in">
+            <span class="prompt"><span id="deskUserHost">henrique@arch</span>:<span class="path">~</span>$</span>
+            <input id="miniInput" type="text" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="mini-hint mono">Try: <code>neofetch</code> • <code>paint</code> • <code>logout</code></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
