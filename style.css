@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f111a;
+    color: #cdd6f4;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Terminal box */
+.terminal {
+    width: 800px;
+    max-width: 90%;
+    background: #1e1e2e;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: #181825;
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.red { background: #f38ba8; }
+.yellow { background: #f9e2af; }
+.green { background: #a6e3a1; }
+
+/* Content */
+.content {
+    padding: 25px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.prompt {
+    color: #a6e3a1;
+}
+
+.path {
+    color: #89b4fa;
+}
+
+.output {
+    margin-bottom: 20px;
+    color: #cdd6f4;
+}
+
+/* Cursor */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background: #a6e3a1;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
